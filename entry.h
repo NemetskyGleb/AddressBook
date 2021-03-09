@@ -12,6 +12,7 @@ struct Entry {
     QString mobilePhoneNumber;
     QString other;
 
+    QString fullname() const;
 };
 
 #endif // ENTRY_H

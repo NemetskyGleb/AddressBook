@@ -20,7 +20,9 @@ class Adressbook : public QMainWindow
 public:
     explicit Adressbook(QWidget *parent = nullptr);
     ~Adressbook();
-
+public slots:
+    void addEntry();
+    void removeEntry();
 private:
     Ui::Adressbook *ui;
     AdressBookEntry *m_entryEditForm = nullptr;
