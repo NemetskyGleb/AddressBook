@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+struct Entry;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class AdressBookEntry; }
 QT_END_NAMESPACE
@@ -19,8 +21,12 @@ public:
     void saveAdressBookEntryPropertiesToFile(const QJsonObject& properties);
     QJsonObject  loadJsonFromFile(const QString& filename);
     QJsonObject toJson() const;
+    void fromEntry(const Entry& entry);
+    Entry toEntry() const;
 signals:
     void propertiesChanged(const QJsonObject& properties);
+    void entryChanged(const Entry& entry);
+
 public slots:
     void save();
 private slots:

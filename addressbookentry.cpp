@@ -3,6 +3,7 @@
 #include <QJsonObject>
 #include <QFile>
 #include <QJsonDocument>
+#include "entry.h"
 
 AdressBookEntry::AdressBookEntry(QWidget *parent)
     : QWidget(parent)
@@ -24,7 +25,7 @@ void AdressBookEntry::save()
 {
     if(m_hasUnsavedChanges) {
         ui->pushButton_save->setText("Сохранить");
-        emit propertiesChanged(toJson());
+        emit entryChanged(toEntry());
         m_hasUnsavedChanges = false;
     }
 }
@@ -88,4 +89,31 @@ QJsonObject AdressBookEntry::toJson() const {
     properties["mobilePhoneNumber"] = ui->lineEdit_mobile_tel->text();
     properties["other"] = ui->plainTextEdit_other->toPlainText();
     return properties;
+}
+
+void AdressBookEntry::fromEntry(const Entry &entry)
+{
+    ui->lineEdit_FirstName->setText(entry.firstName);
+    ui->lineEdit_SecondName->setText(entry.secondName);
+    ui->lineEdit_thirdName->setText(entry.thirdName);
+    ui->lineEdit_address->setText(entry.adress);
+    ui->lineEdit_add_tel->setText(entry.homePhoneNumber);
+    ui->lineEdit_mobile_tel->setText(entry.mobilePhoneNumber);
+    ui->plainTextEdit_other->blockSignals(true);
+    ui->plainTextEdit_other->setPlainText(entry.other);
+    ui->plainTextEdit_other->blockSignals(false);
+}
+
+Entry AdressBookEntry::toEntry() const
+{
+    Entry entry;
+    entry.firstName = ui->lineEdit_FirstName->text();
+    entry.secondName = ui->lineEdit_SecondName->text();
+    entry.thirdName = ui->lineEdit_thirdName->text();
+    entry.adress = ui->lineEdit_address->text();
+    entry.homePhoneNumber = ui->lineEdit_add_tel->text();
+    entry.mobilePhoneNumber = ui->lineEdit_mobile_tel->text();
+    entry.other = ui->plainTextEdit_other->toPlainText();
+    return entry;
+
 }

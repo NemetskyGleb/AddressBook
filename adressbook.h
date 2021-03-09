@@ -23,6 +23,9 @@ public:
 public slots:
     void addEntry();
     void removeEntry();
+    void loadEntryData(const int index);
+    void saveCurrentEntryData(const Entry& entry);
+
 private:
     Ui::Adressbook *ui;
     AdressBookEntry *m_entryEditForm = nullptr;
