@@ -17,13 +17,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     addressbookentry.cpp \
+    adressbook.cpp \
+    entry.cpp \
     main.cpp
 
 HEADERS += \
-    addressbookentry.h
+    addressbookentry.h \
+    adressbook.h \
+    entry.h
 
 FORMS += \
-    addressbookentry.ui
+    addressbookentry.ui \
+    adressbook.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
